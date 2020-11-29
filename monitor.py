@@ -75,11 +75,20 @@ file_handler = JsonFileHandler()
 config = file_handler.read_file("config")
 
 # Get parameters of config
-speech_language = get_mandatory_attribute(config, "speechLanguage")
-monitoring_mode = get_mandatory_attribute(config, "autoMonitoringMode")
 monitoring_frequency = get_mandatory_attribute(config, "monitoringFrequency")
 battery_level_alert = get_mandatory_attribute(config, "batteryLevelAlert")
+speech_language = get_mandatory_attribute(config, "speechLanguage")
 night_mode = get_mandatory_attribute(config, "nightMode")
+
+# Ensure correct monitoring frequency value
+if not isinstance(monitoring_frequency, int) or monitoring_frequency < 0:
+    print(f"Invalid monitoring frequency value of '{monitoring_frequency}', using default")
+    monitoring_frequency = 300
+
+# Ensure correct battery level alert value
+if not isinstance(battery_level_alert, int) or battery_level_alert < 0 or battery_level_alert > 90:
+    print(f"Invalid battery level alert value of '{battery_level_alert}', using default")
+    battery_level_alert = 30
 
 # Read localization file
 localization = file_handler.read_file("localization")
@@ -133,7 +142,7 @@ def run_monitoring():
                 last_battery_level = last["batteryLevel"]
         else:
             history[address] = []
-        
+
         if current_battery_level > last_battery_level:
             # Device is charging
             if current_battery_level <= battery_level_alert:
