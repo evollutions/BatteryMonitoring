@@ -1,0 +1,6 @@
+{
+  "monitoringFrequency": 300,
+  "batteryLevelAlert": 30,
+  "speechLanguage": "czech",
+  "nightMode": true
+}

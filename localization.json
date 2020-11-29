@@ -1,0 +1,14 @@
+{
+  "czech": {
+    "alerts": {
+      "charge_alert": "Zařízení #device_name# má slabou baterii a potřebuje nabít",
+      "charged_alert": "Zařízení #device_name# je plně nabité a může být odpojeno z nabíječky"
+    }
+  },
+  "english": {
+    "alerts": {
+      "charge_alert": "Device #device_name# has low battery level and needs charging",
+      "charged_alert": "Device #device_name# is fully charged and can be disconnected from charger"
+    }
+  }
+}

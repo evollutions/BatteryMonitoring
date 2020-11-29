@@ -1,0 +1,9 @@
+{
+  "devices": [{
+    "address": "01:02:03:04:05:06",
+    "addressType": "random",
+    "friendlyName": "Moje zařízení",
+    "batteryServiceUuid": "180f",
+    "batteryCharacteristicUuid": "2a19"
+  }]
+}
