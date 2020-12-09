@@ -33,7 +33,7 @@ Všechny by měly být součástí Python 3.
 Všechny scripty je nutné spouštět jako **root** pro správnou BLE funkcionalitu. Projekt obsahuje dva hlavní scripty:
 
 ## discover.py
-Script vyhledávající všechna BLE zařízení v okolí. Výsledek vyhledávání je ukládán ve složce discoveries do JSON souborů ve formátu "discovery-timestamp.json". Script slouží pro snadné vytvoření konfiguračního souboru **devices.json** z předchozí kapitoly.
+Script vyhledávající všechna BLE zařízení v okolí. Výsledek vyhledávání je ukládán ve složce discoveries do JSON souborů ve formátu "discovery-timestamp.json". Script slouží pro snadné vytvoření konfiguračního souboru **devices.json** z následující kapitoly.
 
 Příklad nalezeného zařízení (s popisky):
 ```sh
@@ -79,7 +79,7 @@ Příklad nalezeného zařízení (s popisky):
 Konfigurace je řešena pomocí následujících JSON souborů.
 
 ### devices.json
-Soubor obsahující údaje monitorovaných zařízení. Soubor je nutné manuálně upravit na základě výsledků scriptu **discover.py** z následující kapitoly.
+Soubor obsahující údaje monitorovaných zařízení. Soubor je nutné manuálně upravit na základě výsledků scriptu **discover.py** z předchozí kapitoly.
 
 Příklad konfigurace (s popisky):
 ```sh
