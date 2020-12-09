@@ -8,7 +8,7 @@
   "english": {
     "alerts": {
       "charge_alert": "Device #device_name# has low battery level and needs charging",
-      "charged_alert": "Device #device_name# is fully charged and can be disconnected from charger"
+      "charged_alert": "Device #device_name# is fully charged and can be disconnected from the charger"
     }
   }
 }

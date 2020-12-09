@@ -1,5 +1,5 @@
 # Monitorování stavu baterie pomocí BLE
-Školní projekt pro předmět SMAP. Cílem projektu je vytvoření scriptu, který monitoruje stav baterie BLE bezdrátových zařízení v domácnosti.
+Školní projekt pro předmět SMAP. Cílem projektu je vytvoření scriptu, který monitoruje stav baterie BLE bezdrátových zařízení v domácnosti. V rámci monitorování je uživatel případně hlasově upozorňován na zařízení s nízkou úrovní baterie nebo naopak na zařízení, které již bylo nabito a může být odpojeno z nabíječky.
 
 ## Požadavky
 * Python 3
@@ -28,43 +28,6 @@ Všechny by měly být součástí Python 3.
 * time
 * datetime
 * json
-
-## Konfigurace
-Konfigurace je řešena pomocí následujících JSON souborů.
-
-### config.json
-Nastavení týkající se monitorování, které má parametry:
-
-* monitoringFrequency - frekvence spouštění monitorování zařízení v sekundách (číslo)
-* batteryLevelAlert - úroveň baterie, při které bude uživatel upozorňován (číslo 0 - 90)
-* speechLanguage - jazyk používaný pro hlasové upozorňování (string)
-    * v základu pouze "czech" a "english", možné rozšíření v localization.json
-* nightMode - vypnutí upozorňování přes noc (bool)
-
-### localization.json
-Soubor obsahující lokalizační stringy. V základu pouze česká a anglická lokalizace. Pro podporu nového jazyka je potřeba přidat nový parametr s názvem jazyka a následně upravit lokalizační stringy. Ponechání parametru #device_name# je nutné pro správné upozorňování.
-
-### devices.json
-Soubor obsahující údaje monitorovaných zařízení. Soubor je nutné manuálně upravit na základě výsledků scriptu **discover.py** z následující kapitoly.
-
-Příklad konfigurace (s popisky):
-```sh
-{
-  Pole monitorovaných zařízení
-  "devices": [{
-      MAC adresa zařízení
-      "address": "01:02:03:04:05:06",
-      Typ adresy zařízení (public nebo random)
-      "addressType": "random",
-      Jméno zařízení použité při hlasovém upozornění
-      "friendlyName": "Moje zařízení",
-      ID služby baterie (pokud není k dispozici, tak se použije defaultní)
-      "batteryServiceUuid": "180f",
-      ID charakteristiky úrovně baterie (pokud není k dispozici, tak se použije defaultní)
-      "batteryCharacteristicUuid": "2a19"
-    }]
-}
-```
 
 ## Spuštění
 Všechny scripty je nutné spouštět jako **root** pro správnou BLE funkcionalitu. Projekt obsahuje dva hlavní scripty:
@@ -114,3 +77,42 @@ Příklad nalezeného zařízení (s popisky):
 
 ### monitor.py
 Script monitorující úroveň baterie zařízení definovaných v souboru **devices.json**. Po spuštění dochází k monitorování v nekonečné smyčce s frekvencí podle konfigurace. V případě zjištění slabé baterie nebo plně nabitého zařízení, které bylo doposud nabíjené, dojde k hlasovému upozornění. Dodatečné informace jsou vypisovány do konzole.
+
+![Flowchart monitoringu](res/flowchart.png?raw=true "Flowchart monitoringu")
+
+## Konfigurace
+Konfigurace je řešena pomocí následujících JSON souborů.
+
+### config.json
+Nastavení týkající se monitorování, které má parametry:
+
+* monitoringFrequency - frekvence spouštění monitorování zařízení v sekundách (číslo)
+* batteryLevelAlert - úroveň baterie, při které bude uživatel upozorňován (číslo 0 - 90)
+* speechLanguage - jazyk používaný pro hlasové upozorňování (string)
+    * v základu pouze "czech" a "english", možné rozšíření v localization.json
+* nightMode - vypnutí upozorňování přes noc (bool)
+
+### localization.json
+Soubor obsahující lokalizační stringy. V základu pouze česká a anglická lokalizace. Pro podporu nového jazyka je potřeba přidat nový parametr s názvem jazyka a následně upravit lokalizační stringy. Ponechání parametru #device_name# je nutné pro správné upozorňování.
+
+### devices.json
+Soubor obsahující údaje monitorovaných zařízení. Soubor je nutné manuálně upravit na základě výsledků scriptu **discover.py** z následující kapitoly.
+
+Příklad konfigurace (s popisky):
+```sh
+{
+  Pole monitorovaných zařízení
+  "devices": [{
+      MAC adresa zařízení
+      "address": "01:02:03:04:05:06",
+      Typ adresy zařízení (public nebo random)
+      "addressType": "random",
+      Jméno zařízení použité při hlasovém upozornění
+      "friendlyName": "Moje zařízení",
+      ID služby baterie (pokud není k dispozici, tak se použije defaultní)
+      "batteryServiceUuid": "180f",
+      ID charakteristiky úrovně baterie (pokud není k dispozici, tak se použije defaultní)
+      "batteryCharacteristicUuid": "2a19"
+    }]
+}
+```
