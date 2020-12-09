@@ -78,18 +78,6 @@ Příklad nalezeného zařízení (s popisky):
 ## Konfigurace
 Konfigurace je řešena pomocí následujících JSON souborů.
 
-### config.json
-Nastavení týkající se monitorování, které má parametry:
-
-* monitoringFrequency - frekvence spouštění monitorování zařízení v sekundách (číslo)
-* batteryLevelAlert - úroveň baterie, při které bude uživatel upozorňován (číslo 0 - 90)
-* speechLanguage - jazyk používaný pro hlasové upozorňování (string)
-    * v základu pouze "czech" a "english", možné rozšíření v localization.json
-* nightMode - vypnutí upozorňování přes noc (bool)
-
-### localization.json
-Soubor obsahující lokalizační stringy. V základu pouze česká a anglická lokalizace. Pro podporu nového jazyka je potřeba přidat nový parametr s názvem jazyka a následně upravit lokalizační stringy. Ponechání parametru #device_name# je nutné pro správné upozorňování.
-
 ### devices.json
 Soubor obsahující údaje monitorovaných zařízení. Soubor je nutné manuálně upravit na základě výsledků scriptu **discover.py** z následující kapitoly.
 
@@ -111,6 +99,18 @@ Příklad konfigurace (s popisky):
     }]
 }
 ```
+
+### config.json
+Nastavení týkající se monitorování, které má parametry:
+
+* monitoringFrequency - frekvence spouštění monitorování zařízení v sekundách (číslo)
+* batteryLevelAlert - úroveň baterie, při které bude uživatel upozorňován (číslo 0 - 90)
+* speechLanguage - jazyk používaný pro hlasové upozorňování (string)
+    * v základu pouze "czech" a "english", možné rozšíření v localization.json
+* nightMode - vypnutí upozorňování přes noc (bool)
+
+### localization.json
+Soubor obsahující lokalizační stringy. V základu pouze česká a anglická lokalizace. Pro podporu nového jazyka je potřeba přidat nový parametr s názvem jazyka a následně upravit lokalizační stringy. Ponechání parametru #device_name# je nutné pro správné upozorňování.
 
 ## monitor.py
 Script monitorující úroveň baterie zařízení definovaných v souboru **devices.json**. Po spuštění dochází k monitorování v nekonečné smyčce s frekvencí podle konfigurace. V případě zjištění slabé baterie nebo plně nabitého zařízení, které bylo doposud nabíjené, dojde k hlasovému upozornění. Dodatečné informace jsou vypisovány do konzole.
