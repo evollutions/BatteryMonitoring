@@ -32,7 +32,7 @@ Všechny by měly být součástí Python 3.
 ## Spuštění
 Všechny scripty je nutné spouštět jako **root** pro správnou BLE funkcionalitu. Projekt obsahuje dva hlavní scripty:
 
-### discover.py
+## discover.py
 Script vyhledávající všechna BLE zařízení v okolí. Výsledek vyhledávání je ukládán ve složce discoveries do JSON souborů ve formátu "discovery-timestamp.json". Script slouží pro snadné vytvoření konfiguračního souboru **devices.json** z předchozí kapitoly.
 
 Příklad nalezeného zařízení (s popisky):
@@ -75,11 +75,6 @@ Příklad nalezeného zařízení (s popisky):
 ...
 ```
 
-### monitor.py
-Script monitorující úroveň baterie zařízení definovaných v souboru **devices.json**. Po spuštění dochází k monitorování v nekonečné smyčce s frekvencí podle konfigurace. V případě zjištění slabé baterie nebo plně nabitého zařízení, které bylo doposud nabíjené, dojde k hlasovému upozornění. Dodatečné informace jsou vypisovány do konzole.
-
-![Flowchart monitoringu](res/flowchart.png?raw=true "Flowchart monitoringu")
-
 ## Konfigurace
 Konfigurace je řešena pomocí následujících JSON souborů.
 
@@ -116,3 +111,8 @@ Příklad konfigurace (s popisky):
     }]
 }
 ```
+
+## monitor.py
+Script monitorující úroveň baterie zařízení definovaných v souboru **devices.json**. Po spuštění dochází k monitorování v nekonečné smyčce s frekvencí podle konfigurace. V případě zjištění slabé baterie nebo plně nabitého zařízení, které bylo doposud nabíjené, dojde k hlasovému upozornění. Dodatečné informace jsou vypisovány do konzole.
+
+![Flowchart monitoringu](res/flowchart.png?raw=true "Flowchart monitoringu")
